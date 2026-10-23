@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #090909;
+            --text-main: #e0e0e0;
+            --accent-color: #d90429; /* Насыщенный красный цвет */
+            --dark-gray: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'PT Serif', serif;
+            overflow-x: hidden;
+        }
+
+        /* Эффект тактильной ностальгии: пленочный шум и полутоновый растр поверх всего экрана */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 3px 3px;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        h1, h2, h3, .btn {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Главный экран */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Темный градиент поверх фонового изображения */
+            background: linear-gradient(rgba(9, 9, 9, 0.85), rgba(9, 9, 9, 1)), 
+                        url('https://images.unsplash.com/photo-1505635552518-3448ff116af3?q=80&w=2000&auto=format&fit=crop') center/cover;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .title {
+            font-size: 5rem;
+            letter-spacing: 0.15rem;
+            line-height: 1.1;
+            margin: 0;
+            color: var(--text-main);
+            /* Жесткая тень для создания легкого эффекта искажения */
+            text-shadow: 3px 3px 0px var(--accent-color), -3px -3px 0px #333;
+        }
+
+.subtitle {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Акцентная кнопка с заливкой при наведении */
+        .btn {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            letter-spacing: 0.1rem;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: #fff;
+        }
+
+        /* Общие стили секций */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Блок с историей квеста */
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .history-text h2 {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+        }
+
+          .history-text p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
+        /* Изображение с монохромным контрастом */
+        .history-image {
+            width: 100%;
+            height: 450px;
+            background-color: var(--accent-color);
+            position: relative;
+            /* Перевод изображения в ч/б и увеличение контраста */
+            filter: grayscale(100%) contrast(120%);
+            background-image: url('https://images.unsplash.com/photo-1603784860473-19bd6f29056f?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: luminosity; /* Смешивание с фоном */
+            border: 1px solid #333;
+        }
+
+        /* Блок продажи билетов */
+        .tickets {
+            background: var(--dark-gray);
+            border: 1px solid #333;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .tickets h2 {
+            font-size: 3rem;
+            margin: 0 0 1rem 0;
+        }
+
+        .ticket-price {
+            font-size: 5rem;
+            font-family: 'Oswald', sans-serif;
+            color: var(--accent-color);
+            margin: 1.5rem 0;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .info-text {
+            color: #888;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #222;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #555;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 768px) {
+            .history-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .title {
+                font-size: 3.2rem;
+            }
+            .history-text h2 {
+                font-size: 2.8rem;
+            }
+            .history-image {
+                height: 300px;
+            }
+        }
